@@ -52,7 +52,7 @@ const createFocusSpan = () => {
 export const createConsentModal = (api, createMainContainer) => {
     const state = globalObj._state;
     const dom = globalObj._dom;
-    const {hide, showPreferences, acceptCategory} = api;
+    const {hide, showPreferences, acceptCategory, showBTSPreferences} = api;
 
     /**
      * @type {import("../global").ConsentModalOptions}
@@ -65,6 +65,7 @@ export const createConsentModal = (api, createMainContainer) => {
     const acceptAllBtnData = consentModalData.acceptAllBtn,
         acceptNecessaryBtnData = consentModalData.acceptNecessaryBtn,
         showPreferencesBtnData = consentModalData.showPreferencesBtn,
+        showBTSBtnData = consentModalData.showBTSBtnData,
         closeIconLabelData = consentModalData.closeIconLabel,
         footerData = consentModalData.footer,
         consentModalLabelValue = consentModalData.label,
@@ -130,7 +131,7 @@ export const createConsentModal = (api, createMainContainer) => {
 
         appendChild(dom._cmBody, dom._cmTexts);
 
-        if (acceptAllBtnData || acceptNecessaryBtnData || showPreferencesBtnData)
+        if (acceptAllBtnData || acceptNecessaryBtnData || showPreferencesBtnData || showBTSBtnData)
             appendChild(dom._cmBody, dom._cmBtns);
 
         dom._cmDivTabindex = createNode(DIV_TAG);
@@ -220,6 +221,22 @@ export const createConsentModal = (api, createMainContainer) => {
         }
 
         dom._cmShowPreferencesBtn.firstElementChild.innerHTML = showPreferencesBtnData;
+    }
+
+    if (showBTSBtnData) {
+        if (!dom._cmShowBTSBtn) {
+            dom._cmShowBTSBtn = createNode(BUTTON_TAG);
+            appendChild(dom._cmShowBTSBtn, createFocusSpan());
+            addClassCm(dom._cmShowBTSBtn, 'btn');
+            addClassCm(dom._cmShowBTSBtn, 'btn--secondary');
+            setAttribute(dom._cmShowBTSBtn, DATA_ROLE, 'show');
+
+            addEvent(dom._cmShowBTSBtn, 'mouseenter', () => {
+                if (!state._BTSpreferencesModalExists)
+                    createBTSPreferencesModal(api, createMainContainer);
+            });
+            addEvent(dom._cmShowBTSBtn, CLICK_EVENT, showBTSPreferences);
+        }
     }
 
     if (!dom._cmBtnGroup) {
