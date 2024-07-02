@@ -283,6 +283,31 @@ declare namespace CookieConsent {
              */
             equalWeightButtons?: boolean
         }
+        BTSpreferencesModal?: {
+
+            /**
+             * Change preferencesModal layout.
+             */
+            layout?: PreferencesModalLayout
+
+            /**
+             * This options is valid only if layout=bar.
+             */
+            position?: PreferencesModalPosition
+
+            /**
+             * Flip buttons.
+             * @default false
+             */
+            flipButtons?: boolean
+
+            /**
+             * Stylize the accept and reject buttons the same way (GDPR compliant).
+             *
+             * @default true
+             */
+            equalWeightButtons?: boolean
+        }
     }
 
     interface ConsentModalOptions {
