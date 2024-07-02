@@ -607,7 +607,7 @@ declare namespace CookieConsent {
     function showPreferences(): void
 
     /**
-     * Show the preferencesModal.
+     * Show the BTSpreferencesModal.
      */
     function showBTSPreferences(): void
 
