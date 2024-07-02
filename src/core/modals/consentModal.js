@@ -65,7 +65,7 @@ export const createConsentModal = (api, createMainContainer) => {
     const acceptAllBtnData = consentModalData.acceptAllBtn,
         acceptNecessaryBtnData = consentModalData.acceptNecessaryBtn,
         showPreferencesBtnData = consentModalData.showPreferencesBtn,
-        showBTSBtnData = consentModalData.showBTSBtnData,
+        showBTSPreferencesBtnData = consentModalData.showBTSPreferencesBtn,
         closeIconLabelData = consentModalData.closeIconLabel,
         footerData = consentModalData.footer,
         consentModalLabelValue = consentModalData.label,
@@ -131,7 +131,7 @@ export const createConsentModal = (api, createMainContainer) => {
 
         appendChild(dom._cmBody, dom._cmTexts);
 
-        if (acceptAllBtnData || acceptNecessaryBtnData || showPreferencesBtnData || showBTSBtnData)
+        if (acceptAllBtnData || acceptNecessaryBtnData || showPreferencesBtnData || showBTSPreferencesBtn)
             appendChild(dom._cmBody, dom._cmBtns);
 
         dom._cmDivTabindex = createNode(DIV_TAG);
@@ -223,7 +223,7 @@ export const createConsentModal = (api, createMainContainer) => {
         dom._cmShowPreferencesBtn.firstElementChild.innerHTML = showPreferencesBtnData;
     }
 
-    if (showBTSBtnData) {
+    if (showBTSPreferencesBtn) {
         if (!dom._cmShowBTSBtn) {
             dom._cmShowBTSBtn = createNode(BUTTON_TAG);
             appendChild(dom._cmShowBTSBtn, createFocusSpan());
