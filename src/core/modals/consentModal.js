@@ -131,7 +131,7 @@ export const createConsentModal = (api, createMainContainer) => {
 
         appendChild(dom._cmBody, dom._cmTexts);
 
-        if (acceptAllBtnData || acceptNecessaryBtnData || showPreferencesBtnData || showBTSPreferencesBtn)
+        if (acceptAllBtnData || acceptNecessaryBtnData || showPreferencesBtnData || showBTSPreferencesBtnData)
             appendChild(dom._cmBody, dom._cmBtns);
 
         dom._cmDivTabindex = createNode(DIV_TAG);
@@ -223,19 +223,19 @@ export const createConsentModal = (api, createMainContainer) => {
         dom._cmShowPreferencesBtn.firstElementChild.innerHTML = showPreferencesBtnData;
     }
 
-    if (showBTSPreferencesBtn) {
-        if (!dom._cmShowBTSBtn) {
-            dom._cmShowBTSBtn = createNode(BUTTON_TAG);
-            appendChild(dom._cmShowBTSBtn, createFocusSpan());
-            addClassCm(dom._cmShowBTSBtn, 'btn');
-            addClassCm(dom._cmShowBTSBtn, 'btn--secondary');
-            setAttribute(dom._cmShowBTSBtn, DATA_ROLE, 'show');
+    if (showBTSPreferencesBtnData) {
+        if (!dom._cmShowBTSPreferencesBtn) {
+            dom._cmShowBTSPreferencesBtn = createNode(BUTTON_TAG);
+            appendChild(dom._cmShowBTSPreferencesBtn, createFocusSpan());
+            addClassCm(dom._cmShowBTSPreferencesBtn, 'btn');
+            addClassCm(dom._cmShowBTSPreferencesBtn, 'btn--secondary');
+            setAttribute(dom._cmShowBTSPreferencesBtn, DATA_ROLE, 'show');
 
-            addEvent(dom._cmShowBTSBtn, 'mouseenter', () => {
+            addEvent(dom._cmShowBTSPreferencesBtn, 'mouseenter', () => {
                 if (!state._BTSpreferencesModalExists)
                     createBTSPreferencesModal(api, createMainContainer);
             });
-            addEvent(dom._cmShowBTSBtn, CLICK_EVENT, showBTSPreferences);
+            addEvent(dom._cmShowBTSPreferencesBtn, CLICK_EVENT, showBTSPreferences);
         }
     }
 
