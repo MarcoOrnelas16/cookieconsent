@@ -203,5 +203,6 @@ export const reRunPlugin = (state, showModal) => {
     cc.run(config).then(() => {
         showModal === 1 && cc.show(true);
         showModal === 2 && cc.showPreferences();
+        showModal === 3 && cc.showBTSPreferences();
     });
 };
