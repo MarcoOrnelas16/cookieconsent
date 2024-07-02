@@ -374,9 +374,29 @@ declare namespace CookieConsent {
         sections: Section[]
     }
 
+    interface BTSPreferencesModalOptions {
+        title?: string
+        acceptAllBtn?: string
+        acceptNecessaryBtn?: string
+        savePreferencesBtn?: string
+
+        /**
+         * Accessibility label.
+         */
+        closeIconLabel?: string
+
+        /**
+         * Label to append to services counter.
+         */
+        serviceCounterLabel?: string
+
+        sections: Section[]
+    }
+
     interface Translation {
         consentModal: ConsentModalOptions
         preferencesModal: PreferencesModalOptions
+        btsPreferencesModal: BTSPreferencesModalOptions
     }
 
     interface CookieConsentConfig {
