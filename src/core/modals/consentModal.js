@@ -27,6 +27,7 @@ import {
 
 import { guiManager } from '../../utils/gui-manager';
 import { createPreferencesModal } from './preferencesModal';
+import { createBTSPreferencesModal } from './BTSpreferencesModal';
 
 /**
  * @callback CreateMainContainer
@@ -237,6 +238,8 @@ export const createConsentModal = (api, createMainContainer) => {
             });
             addEvent(dom._cmShowBTSPreferencesBtn, CLICK_EVENT, showBTSPreferences);
         }
+        
+        dom._cmShowBTSPreferencesBtn.firstElementChild.innerHTML = showBTSPreferencesBtnData;
     }
 
     if (!dom._cmBtnGroup) {
@@ -314,5 +317,5 @@ export const createConsentModal = (api, createMainContainer) => {
 
     getModalFocusableData(1);
 
-    addDataButtonListeners(dom._cmBody, api, createPreferencesModal, createMainContainer);
+    addDataButtonListeners(dom._cmBody, api, createPreferencesModal, createMainContainer, createBTSPreferencesModal);
 };
