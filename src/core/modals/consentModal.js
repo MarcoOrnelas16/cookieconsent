@@ -225,6 +225,7 @@ export const createConsentModal = (api, createMainContainer) => {
     }
 
     if (showBTSPreferencesBtnData) {
+        console.log('si recibe')
         if (!dom._cmShowBTSPreferencesBtn) {
             dom._cmShowBTSPreferencesBtn = createNode(BUTTON_TAG);
             appendChild(dom._cmShowBTSPreferencesBtn, createFocusSpan());
