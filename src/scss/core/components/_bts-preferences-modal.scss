@@ -21,6 +21,15 @@
           top: 3px;
           left: 3px;
         }
+        .cookie-2 {
+          border: 1px solid var(--bts-main-text);
+          height: 1px;
+          width: 1px;
+          position: absolute;
+          top: 9px;
+          left: 9px;
+          border-radius: 50%;
+        }
       }
     }
     .pm__close-btn{
