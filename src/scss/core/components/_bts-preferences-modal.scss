@@ -2,9 +2,10 @@
 
 #cc-main {
   .pm.bts-pm {
-    background: linear-gradient(90deg, rgba(42,55,160,1) 0%, rgba(23,31,94,1) 35%, rgba(15,21,68,1) 100%);
+    background: linear-gradient(180deg, rgba(42,55,160,1) 0%, rgba(23,31,94,1) 35%, rgba(15,21,68,1) 100%);
     
-    .pm-header {
+    .pm__header {
+      color: var(--bts-main-text);
       .cookie {
         position: relative;
         width: 20px;
