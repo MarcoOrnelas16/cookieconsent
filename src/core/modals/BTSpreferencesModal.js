@@ -90,8 +90,6 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         dom._pm = createNode(DIV_TAG);
 
         addClass(dom._pm, 'bts-pm');
-        console.log(dom._pm);
-        addClass(dom._pm, 'pm');
         setAttribute(dom._pm, 'role', 'dialog');
         setAttribute(dom._pm, ARIA_HIDDEN, true);
         setAttribute(dom._pm, 'aria-modal', true);
