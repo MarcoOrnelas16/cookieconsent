@@ -27,8 +27,17 @@
           height: 1px;
           width: 1px;
           position: absolute;
-          top: 9px;
-          left: 9px;
+          top: 10px;
+          left: 7px;
+          border-radius: 50%;
+        }
+        .cookie-3 {
+          border: 1px solid var(--bts-main-text);
+          height: 1px;
+          width: 1px;
+          position: absolute;
+          top: 6px;
+          left: 11px;
           border-radius: 50%;
         }
       }

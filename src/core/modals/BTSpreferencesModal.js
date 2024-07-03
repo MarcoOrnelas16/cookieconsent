@@ -89,8 +89,8 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         // Preferences modal
         dom._pm = createNode(DIV_TAG);
 
-        // addClass(dom._pm, 'pm');
-        addClass(dom._pm, 'bts-pm');
+        addClass(dom._pm, 'pm');
+        addClass(dom._pm, 'bts');
         setAttribute(dom._pm, 'role', 'dialog');
         setAttribute(dom._pm, ARIA_HIDDEN, true);
         setAttribute(dom._pm, 'aria-modal', true);
@@ -111,8 +111,11 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         addClass(dom._cookie_chip_1, 'cookie-1');
         dom._cookie_chip_2 = createNode(DIV_TAG);
         addClass(dom._cookie_chip_2, 'cookie-2');
+        dom._cookie_chip_3 = createNode(DIV_TAG);
+        addClass(dom._cookie_chip_3, 'cookie-3');
         appendChild(dom._cookie_main, dom._cookie_chip_1);
         appendChild(dom._cookie_main, dom._cookie_chip_2);
+        appendChild(dom._cookie_main, dom._cookie_chip_3);
 
         dom._pmTitle = createNode('h2');
         addClassPm(dom._pmTitle, 'title');
