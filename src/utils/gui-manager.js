@@ -1,5 +1,5 @@
 import { globalObj } from '../core/global';
-import { addClass, elContains, removeClass } from './general';
+import { addClass, debug, elContains, removeClass } from './general';
 
 /**
  * @typedef {Object} Layout
@@ -89,6 +89,7 @@ export const guiManager = (applyToModal) => {
     const guiOptions = globalObj._state._userConfig.guiOptions;
     const consentModalOptions = guiOptions && guiOptions.consentModal;
     const preferencesModalOptions = guiOptions && guiOptions.preferencesModal;
+    const BTSpreferencesModalOptions = guiOptions && guiOptions.BTSpreferencesModal;
 
     if (applyToModal === 0) {
         setLayout(
@@ -106,6 +107,17 @@ export const guiManager = (applyToModal) => {
             globalObj._dom._pm,
             ALL_PM_LAYOUTS,
             preferencesModalOptions,
+            CLASS_CONSTANTS._pmPrefix,
+            CLASS_CONSTANTS._box,
+            'pm'
+        );
+    }
+    debug(applyToModal);
+    if (applyToModal === 2) {
+        setLayout(
+            globalObj._dom._pm,
+            ALL_PM_LAYOUTS,
+            BTSpreferencesModalOptions,
             CLASS_CONSTANTS._pmPrefix,
             CLASS_CONSTANTS._box,
             'pm'
@@ -161,6 +173,7 @@ const setLayout = (modal, allowedLayoutsObj, userGuiOptions, modalClassPrefix, d
         : currentLayout._defaultAlignH;
 
     const addModalClass = className => {
+        debug('classname', className);
         className && addClass(modal, modalClassPrefix + className);
     };
 
