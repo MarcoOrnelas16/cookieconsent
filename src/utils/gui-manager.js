@@ -1,5 +1,5 @@
 import { globalObj } from '../core/global';
-import { addClass, debug, elContains, removeClass } from './general';
+import { addClass, elContains, removeClass } from './general';
 
 /**
  * @typedef {Object} Layout
@@ -83,7 +83,7 @@ const ALL_PM_LAYOUTS = {
 
 /**
  * Add appropriate classes to modals and buttons
- * @param {0 | 1} applyToModal
+ * @param {0 | 1 | 2} applyToModal
  */
 export const guiManager = (applyToModal) => {
     const guiOptions = globalObj._state._userConfig.guiOptions;
@@ -112,7 +112,6 @@ export const guiManager = (applyToModal) => {
             'pm'
         );
     }
-    debug(applyToModal);
     if (applyToModal === 2) {
         setLayout(
             globalObj._dom._pm,
@@ -120,7 +119,7 @@ export const guiManager = (applyToModal) => {
             BTSpreferencesModalOptions,
             CLASS_CONSTANTS._pmPrefix,
             CLASS_CONSTANTS._box,
-            'pm'
+            'bts-pm'
         );
     }
 };
@@ -132,7 +131,7 @@ export const guiManager = (applyToModal) => {
  * @param {import("../core/global").GuiModalOption} userGuiOptions
  * @param {'cm--' | 'pm--'} modalClassPrefix
  * @param {string} defaultLayoutName
- * @param {'cm' | 'pm'} modalClassName
+ * @param {'cm' | 'pm' | 'bts-pm'} modalClassName
  */
 const setLayout = (modal, allowedLayoutsObj, userGuiOptions, modalClassPrefix, defaultLayoutName, modalClassName) => {
     /**
@@ -173,7 +172,6 @@ const setLayout = (modal, allowedLayoutsObj, userGuiOptions, modalClassPrefix, d
         : currentLayout._defaultAlignH;
 
     const addModalClass = className => {
-        debug('classname', className);
         className && addClass(modal, modalClassPrefix + className);
     };
 

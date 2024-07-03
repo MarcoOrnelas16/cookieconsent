@@ -91,7 +91,6 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
 
         addClass(dom._pm, 'pm--bts');
         addClassPm(dom._pm, 'bts');
-        setAttribute(dom._pm, 'data', 'test');
         setAttribute(dom._pm, 'role', 'dialog');
         setAttribute(dom._pm, ARIA_HIDDEN, true);
         setAttribute(dom._pm, 'aria-modal', true);
@@ -484,7 +483,7 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         dom._pmBody = dom._pmNewBody;
     }
 
-    guiManager(1);
+    guiManager(2);
 
     if (!state._preferencesModalExists) {
         state._preferencesModalExists = true;
