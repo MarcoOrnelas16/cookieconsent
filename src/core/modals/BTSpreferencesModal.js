@@ -91,6 +91,7 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
 
         addClass(dom._pm, 'pm--bts');
         addClassPm(dom._pm, 'bts');
+        setAttribute(dom._pm, 'data', 'test');
         setAttribute(dom._pm, 'role', 'dialog');
         setAttribute(dom._pm, ARIA_HIDDEN, true);
         setAttribute(dom._pm, 'aria-modal', true);
