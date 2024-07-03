@@ -72,6 +72,8 @@ export const createConsentModal = (api, createMainContainer) => {
         consentModalLabelValue = consentModalData.label,
         consentModalTitleValue = consentModalData.title;
 
+    console.log('hola', showBTSPreferencesBtnData)
+
     /**
      * @param {string|string[]} [categories]
      */
@@ -132,8 +134,10 @@ export const createConsentModal = (api, createMainContainer) => {
 
         appendChild(dom._cmBody, dom._cmTexts);
 
-        if (acceptAllBtnData || acceptNecessaryBtnData || showPreferencesBtnData || showBTSPreferencesBtnData)
+        if (acceptAllBtnData || acceptNecessaryBtnData || showPreferencesBtnData || showBTSPreferencesBtnData) {
+            console.log('aqui 1', showBTSPreferencesBtnData)
             appendChild(dom._cmBody, dom._cmBtns);
+        }
 
         dom._cmDivTabindex = createNode(DIV_TAG);
         setAttribute(dom._cmDivTabindex, 'tabIndex', -1);
