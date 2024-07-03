@@ -94,6 +94,7 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         setAttribute(dom._pm, ARIA_HIDDEN, true);
         setAttribute(dom._pm, 'aria-modal', true);
         setAttribute(dom._pm, 'aria-labelledby', 'pm__title');
+        addClass(dom._pm, 'bts-pm');
 
         // Hide preferences on 'esc' key press
         addEvent(dom._htmlDom, 'keydown', (event) => {

@@ -1,0 +1,57 @@
+@import '../global';
+
+#cc-main {
+  .pm.bts-pm {
+    background: linear-gradient(90deg, rgba(42,55,160,1) 0%, rgba(23,31,94,1) 35%, rgba(15,21,68,1) 100%);
+    
+    .pm-header {
+      .cookie {
+        position: relative;
+        width: 20px;
+        margin-right: 8px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid var(--bts-main-text);
+        .cookie-1 {
+          border: 2px solid var(--bts-main-text);
+          width: 2px;
+          height: 2px;
+          border-radius: 50%;
+          position: absolute;
+          top: 3px;
+          left: 3px;
+        }
+      }
+    }
+    .pm__close-btn{
+
+      width: calc(#{$btn-height} - 2px);
+      height: calc(#{$btn-height} - 2px);
+      position: relative;
+      background: transparent;
+      border: none;
+      transition: all .15s ease;
+
+      span {
+          display: flex;
+          height: 100%;
+          width: 100%;
+      }
+
+      svg{
+          stroke: var(--bts-secondary-text);
+          stroke-width: 3px;
+          transform: scale(.5);
+          transition: stroke .15s ease;
+      }
+
+      &:hover{
+          background: var(--bts-alt-dark-secondary);
+
+          svg{
+              stroke: var(--bts-main-text);
+          }
+      }
+  }
+  }
+}
