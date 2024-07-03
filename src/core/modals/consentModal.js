@@ -72,7 +72,7 @@ export const createConsentModal = (api, createMainContainer) => {
         consentModalLabelValue = consentModalData.label,
         consentModalTitleValue = consentModalData.title;
 
-    console.log('hola', showBTSPreferencesBtnData)
+    console.log('hola', showBTSPreferencesBtnData);
 
     /**
      * @param {string|string[]} [categories]
@@ -135,7 +135,7 @@ export const createConsentModal = (api, createMainContainer) => {
         appendChild(dom._cmBody, dom._cmTexts);
 
         if (acceptAllBtnData || acceptNecessaryBtnData || showPreferencesBtnData || showBTSPreferencesBtnData) {
-            console.log('aqui 1', showBTSPreferencesBtnData)
+            console.log('aqui 1', showBTSPreferencesBtnData);
             appendChild(dom._cmBody, dom._cmBtns);
         }
 
@@ -228,7 +228,7 @@ export const createConsentModal = (api, createMainContainer) => {
         dom._cmShowPreferencesBtn.firstElementChild.innerHTML = showPreferencesBtnData;
     }
 
-    console.log('existe?', showBTSPreferencesBtnData)
+    console.log('existe?', showBTSPreferencesBtnData);
     if (showBTSPreferencesBtnData) {
         if (!dom._cmShowBTSPreferencesBtn) {
             dom._cmShowBTSPreferencesBtn = createNode(BUTTON_TAG);

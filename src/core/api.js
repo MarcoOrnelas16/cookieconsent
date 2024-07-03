@@ -36,6 +36,7 @@ import {
 import {
     createConsentModal,
     createPreferencesModal,
+    createBTSPreferencesModal,
     generateHtml,
     createMainContainer
 } from './modals/index';
