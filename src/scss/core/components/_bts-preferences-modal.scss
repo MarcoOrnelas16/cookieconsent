@@ -21,104 +21,105 @@
     overflow: hidden;
     z-index: 1;
     box-shadow: $modal-box-shadow;
+  }
 
-    svg {
-      fill: none;
-      width: 100%;
-    }
+  svg {
+    fill: none;
+    width: 100%;
+  }
 
-    .pm__header,
-    .pm__body,
-    .pm__footer {
-      padding: $padding-y $padding-x;
-    }
+  .pm__header,
+  .pm__body,
+  .pm__footer {
+    padding: $padding-y $padding-x;
+  }
 
-    .pm__header {
-      color: var(--bts-main-text);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--cc-separator-border-color);
+  .pm__header {
+    color: var(--bts-main-text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--cc-separator-border-color);
 
-      .cookie {
-        position: relative;
-        width: 20px;
-        margin-right: 8px;
-        height: 20px;
-        border-radius: 50%;
-        border: 2px solid var(--bts-main-text);
-
-        .cookie-1 {
-          border: 2px solid var(--bts-main-text);
-          width: 2px;
-          height: 2px;
-          border-radius: 50%;
-          position: absolute;
-          top: 3px;
-          left: 3px;
-        }
-
-        .cookie-2 {
-          border: 1px solid var(--bts-main-text);
-          height: 1px;
-          width: 1px;
-          position: absolute;
-          top: 10px;
-          left: 7px;
-          border-radius: 50%;
-        }
-
-        .cookie-3 {
-          border: 1px solid var(--bts-main-text);
-          height: 1px;
-          width: 1px;
-          position: absolute;
-          top: 6px;
-          left: 11px;
-          border-radius: 50%;
-        }
-      }
-    }
-
-    .pm__title {
-      display: flex;
-      align-items: center;
-      flex: 1;
-      font-weight: $font-weight-bold;
-      margin-right: 2em;
-    }
-
-    .pm__close-btn {
-      width: calc(#{$btn-height} - 2px);
-      height: calc(#{$btn-height} - 2px);
+    .cookie {
       position: relative;
-      background: transparent;
-      border: none;
-      transition: all .15s ease;
+      width: 20px;
+      margin-right: 8px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--bts-main-text);
 
-      span {
-        display: flex;
-        height: 100%;
-        width: 100%;
+      .cookie-1 {
+        border: 2px solid var(--bts-main-text);
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        position: absolute;
+        top: 3px;
+        left: 3px;
       }
 
-      svg {
-        stroke: var(--bts-secondary-text);
-        stroke-width: 3px;
-        transform: scale(.5);
-        transition: stroke .15s ease;
+      .cookie-2 {
+        border: 1px solid var(--bts-main-text);
+        height: 1px;
+        width: 1px;
+        position: absolute;
+        top: 10px;
+        left: 7px;
+        border-radius: 50%;
       }
 
-      &:hover {
-        background: var(--bts-alt-dark-secondary);
-        border: none;
-
-        svg {
-          stroke: var(--bts-main-text);
-        }
+      .cookie-3 {
+        border: 1px solid var(--bts-main-text);
+        height: 1px;
+        width: 1px;
+        position: absolute;
+        top: 6px;
+        left: 11px;
+        border-radius: 50%;
       }
     }
   }
+
+  .pm__title {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    font-weight: $font-weight-bold;
+    margin-right: 2em;
+  }
+
+  .pm__close-btn {
+    width: calc(#{$btn-height} - 2px);
+    height: calc(#{$btn-height} - 2px);
+    position: relative;
+    background: transparent;
+    border: none;
+    transition: all .15s ease;
+
+    span {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+
+    svg {
+      stroke: var(--bts-secondary-text);
+      stroke-width: 3px;
+      transform: scale(.5);
+      transition: stroke .15s ease;
+    }
+
+    &:hover {
+      background: var(--bts-alt-dark-secondary);
+      border: none;
+
+      svg {
+        stroke: var(--bts-main-text);
+      }
+    }
+  }
+
 
   .pm__body {
     flex: 1;
@@ -796,7 +797,7 @@
 
   .cc--anim {
 
-    .pm,
+    .bts-pm,
     .pm-overlay {
       transition: opacity var(--cc-modal-transition-duration) ease,
         visibility var(--cc-modal-transition-duration) ease,
@@ -949,7 +950,7 @@
 
 @media screen and (max-width: 640px) {
   #cc-main {
-    .pm {
+    .bts-pm {
       left: 0;
       right: 0;
       top: 0;
@@ -1045,7 +1046,7 @@
     }
   }
 
-  .show--preferences #cc-main .cc--anim .pm {
+  .show--preferences #cc-main .cc--anim .bts-pm {
     transform: translateY(0) !important;
   }
 }
