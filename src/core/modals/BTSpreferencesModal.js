@@ -57,7 +57,7 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
     /**
      * @type {import("../global").PreferencesModalOptions}
      */
-    const modalData = state._currentTranslation && state._currentTranslation.preferencesModal;
+    const modalData = state._currentTranslation && state._currentTranslation.btsPreferencesModal;
 
     if (!modalData)
         return;
