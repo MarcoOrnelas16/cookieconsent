@@ -23,6 +23,8 @@
     box-shadow: $modal-box-shadow;
   }
 
+  .bts-pm {
+
   svg {
     fill: none;
     width: 100%;
@@ -1043,6 +1045,7 @@
         flex-direction: column-reverse !important;
       }
     }
+  }
   }
 
   .show--preferences #cc-main .cc--anim .bts-pm {
