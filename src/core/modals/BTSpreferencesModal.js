@@ -155,6 +155,16 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         setAttribute(dom._pmDivTabindex, 'tabIndex', -1);
         appendChild(dom._pm, dom._pmDivTabindex);
 
+        // Create qr?
+        var codeContainer = createNode(DIV_TAG);
+        codeContainer.id = 'qrcode';
+        addClass(codeContainer, 'code-contaienr');
+        var codeImg = createNode('script');
+        setAttribute(codeImg, 'type', 'text/javascript');
+        codeImg.text = 'new QRCode(document.getElementById("qrcode"), "http://google.com");';
+        appendChild(codeContainer, codeImg);
+        appendChild(dom._pmBody, codeContainer);
+
         appendChild(dom._pm, dom._pmHeader);
         appendChild(dom._pm, dom._pmBody);
 
