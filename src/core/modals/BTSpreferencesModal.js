@@ -159,14 +159,18 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         // Create qr?
         var codeContainer = createNode(DIV_TAG);
         codeContainer.id = 'qrcode';
-        appendChild(dom._pmBody, codeContainer);
-        document.addEventListener('DOMContentLoaded', function() {
+        var generator = createNode(BUTTON_TAG);
+        generator.id = 'generateQR';
+        addClassPm(generator, 'btn');
+        generator.addEventListener('click', function() {
             var qrcode = new QRCode(document.getElementById('qrcode'), {
                 text: 'https://google.com',
                 width: 128,
                 height: 128
             });
         });
+        appendChild(dom._pmBody, codeContainer);
+        appendChild(dom._pmBody, generator);
         
         
         appendChild(dom._pm, dom._pmHeader);
