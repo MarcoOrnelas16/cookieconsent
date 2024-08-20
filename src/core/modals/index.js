@@ -4,6 +4,7 @@ import { createConsentModal } from './consentModal';
 import { createPreferencesModal } from './preferencesModal';
 import { DIV_TAG } from '../../utils/constants';
 import { handleRtlLanguage } from '../../utils/language';
+import { createBTSPreferencesModal } from './BTSpreferencesModal';
 
 export const createMainContainer = () => {
     const dom = globalObj._dom;
@@ -29,14 +30,18 @@ export const createMainContainer = () => {
  * @param {import('../global').Api} api
  */
 export const generateHtml = (api) => {
-    addDataButtonListeners(null, api, createPreferencesModal, createMainContainer);
+    addDataButtonListeners(null, api, createPreferencesModal, createBTSPreferencesModal, createMainContainer);
 
     if (globalObj._state._invalidConsent)
         createConsentModal(api, createMainContainer);
 
     if (!globalObj._config.lazyHtmlGeneration)
         createPreferencesModal(api, createMainContainer);
+
+    if (!globalObj._config.lazyHtmlGeneration)
+        createBTSPreferencesModal(api, createMainContainer);
 };
 
 export * from './consentModal';
 export * from './preferencesModal';
+export * from './BTSpreferencesModal';

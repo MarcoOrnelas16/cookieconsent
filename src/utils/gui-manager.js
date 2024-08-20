@@ -83,12 +83,13 @@ const ALL_PM_LAYOUTS = {
 
 /**
  * Add appropriate classes to modals and buttons
- * @param {0 | 1} applyToModal
+ * @param {0 | 1 | 2} applyToModal
  */
 export const guiManager = (applyToModal) => {
     const guiOptions = globalObj._state._userConfig.guiOptions;
     const consentModalOptions = guiOptions && guiOptions.consentModal;
     const preferencesModalOptions = guiOptions && guiOptions.preferencesModal;
+    const BTSpreferencesModalOptions = guiOptions && guiOptions.BTSpreferencesModal;
 
     if (applyToModal === 0) {
         setLayout(
@@ -111,6 +112,16 @@ export const guiManager = (applyToModal) => {
             'pm'
         );
     }
+    if (applyToModal === 2) {
+        setLayout(
+            globalObj._dom._pm,
+            ALL_PM_LAYOUTS,
+            BTSpreferencesModalOptions,
+            CLASS_CONSTANTS._pmPrefix,
+            CLASS_CONSTANTS._box,
+            'bts-pm'
+        );
+    }
 };
 
 /**
@@ -120,7 +131,7 @@ export const guiManager = (applyToModal) => {
  * @param {import("../core/global").GuiModalOption} userGuiOptions
  * @param {'cm--' | 'pm--'} modalClassPrefix
  * @param {string} defaultLayoutName
- * @param {'cm' | 'pm'} modalClassName
+ * @param {'cm' | 'pm' | 'bts-pm'} modalClassName
  */
 const setLayout = (modal, allowedLayoutsObj, userGuiOptions, modalClassPrefix, defaultLayoutName, modalClassName) => {
     /**

@@ -14,6 +14,7 @@ const dialog = new A11yDialog(container);
 
 /** @type {HTMLInputElement} **/    const cmRejectBtn = getById('consent-modal-reject-btn');
 /** @type {HTMLInputElement} **/    const cmManageBtn = getById('consent-modal-manage-btn');
+/** @type {HTMLInputElement} **/    const cmManageBTSBtn = getById('consent-modal-manage-btn');
 /** @type {HTMLTextAreaElement} **/ const cmFooter = getById('editing');
 
 /** @type {HTMLInputElement} **/    const pmTitle = getById('pm-title');
@@ -144,6 +145,7 @@ function updateEditorFields(_state) {
     cmCloseIconLabel.value = consentModal.closeIconLabel || '';
     cmRejectBtn.value = consentModal.acceptNecessaryBtn || '';
     cmManageBtn.value = consentModal.showPreferencesBtn || '';
+    cmManageBTSBtn.value = consentModal.showBTSPreferencesBtn || '';
     cmFooter.value = consentModal.footer || '';
 
     /**
@@ -320,6 +322,7 @@ function retrieveCurrentTranslationFromEditor() {
     consentModal.acceptAllBtn = cmAcceptBtn.value;
     consentModal.acceptNecessaryBtn = cmRejectBtn.value;
     consentModal.showPreferencesBtn = cmManageBtn.value;
+    consentModal.showBTSPreferencesBtn = cmManageBTSBtn.value;
     consentModal.footer = cmFooter.value;
 
     /**

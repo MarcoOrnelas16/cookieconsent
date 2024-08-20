@@ -167,7 +167,8 @@ $service-toggle-knob-icon-width: 1.7px;
                 transition: background-color .25s ease, border-color .25s ease;
                 min-height: 58px;
 
-                &:hover{
+                
+                &:hover {
                     background: var(--cc-cookie-category-block-hover-bg);
                     border-color: var(--cc-cookie-category-block-hover-border);
                 }
@@ -426,14 +427,14 @@ $service-toggle-knob-icon-width: 1.7px;
             &~.toggle__icon{
                 background: var(--cc-toggle-readonly-bg);
                 box-shadow: 0 0 0 1px var(--cc-toggle-readonly-bg);
-
+        
                 .toggle__icon-circle {
-                    background: var(--cc-toggle-readonly-knob-bg);
-                    box-shadow: none;
+                  background: var(--cc-toggle-readonly-knob-bg);
+                  box-shadow: none;
                 }
-
+        
                 svg {
-                    stroke: var(--cc-toggle-readonly-knob-icon-color);
+                  stroke: var(--cc-toggle-readonly-knob-icon-color);
                 }
             }
         }
@@ -583,22 +584,22 @@ $service-toggle-knob-icon-width: 1.7px;
                     border-color .15s ease,
                     color .15s ease;
 
-        &:hover{
+        &:hover {
             background: var(--cc-btn-primary-hover-bg);
             border-color: var(--cc-btn-primary-hover-border-color);
             color: var(--cc-btn-primary-hover-color);
         }
 
         /* Secondary btn colors */
-        &--secondary{
+        &--secondary {
             color: var(--cc-btn-secondary-color);
             background: var(--cc-btn-secondary-bg);
             border-color: var(--cc-btn-secondary-border-color);
-
-            &:hover{
-                background: var(--cc-btn-secondary-hover-bg);
-                border-color: var(--cc-btn-secondary-hover-border-color);
-                color: var(--cc-btn-secondary-hover-color);
+      
+            &:hover {
+              background: var(--cc-btn-secondary-hover-bg);
+              border-color: var(--cc-btn-secondary-hover-border-color);
+              color: var(--cc-btn-secondary-hover-color);
             }
         }
     }

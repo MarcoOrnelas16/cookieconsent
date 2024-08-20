@@ -283,6 +283,31 @@ declare namespace CookieConsent {
              */
             equalWeightButtons?: boolean
         }
+        BTSpreferencesModal?: {
+
+            /**
+             * Change preferencesModal layout.
+             */
+            layout?: PreferencesModalLayout
+
+            /**
+             * This options is valid only if layout=bar.
+             */
+            position?: PreferencesModalPosition
+
+            /**
+             * Flip buttons.
+             * @default false
+             */
+            flipButtons?: boolean
+
+            /**
+             * Stylize the accept and reject buttons the same way (GDPR compliant).
+             *
+             * @default true
+             */
+            equalWeightButtons?: boolean
+        }
     }
 
     interface ConsentModalOptions {
@@ -297,6 +322,7 @@ declare namespace CookieConsent {
         acceptAllBtn?: string
         acceptNecessaryBtn?: string
         showPreferencesBtn?: string
+        showBTSPreferencesBtn?: string;
 
         /**
          * Specify to generate a big "X" (accept necessary) button. Visible in the `box` layout only.
@@ -374,9 +400,29 @@ declare namespace CookieConsent {
         sections: Section[]
     }
 
+    interface BTSPreferencesModalOptions {
+        title?: string
+        acceptAllBtn?: string
+        acceptNecessaryBtn?: string
+        savePreferencesBtn?: string
+
+        /**
+         * Accessibility label.
+         */
+        closeIconLabel?: string
+
+        /**
+         * Label to append to services counter.
+         */
+        serviceCounterLabel?: string
+
+        sections: Section[]
+    }
+
     interface Translation {
         consentModal: ConsentModalOptions
         preferencesModal: PreferencesModalOptions
+        btsPreferencesModal: BTSPreferencesModalOptions
     }
 
     interface CookieConsentConfig {
@@ -559,6 +605,11 @@ declare namespace CookieConsent {
      * Show the preferencesModal.
      */
     function showPreferences(): void
+
+    /**
+     * Show the BTSpreferencesModal.
+     */
+    function showBTSPreferences(): void
 
     /**
      * Hide the preferencesModal.
