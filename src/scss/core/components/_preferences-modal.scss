@@ -53,7 +53,7 @@ $service-toggle-knob-icon-width: 1.7px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid var(--cc-separator-border-color);
+        border-bottom: 1px solid var(--bts-description-text);
     }
 
     .pm__title{
@@ -160,23 +160,23 @@ $service-toggle-knob-icon-width: 1.7px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                background: var(--cc-cookie-category-block-bg);
+                background: var(--bts-alt-secondary);
                 position: relative;
                 padding: 1.1em 5.4em 1.1em 1.2em;
-                border: 1px solid var(--cc-cookie-category-block-border);
+                border: 1px solid var(--bts-description-text);
                 transition: background-color .25s ease, border-color .25s ease;
                 min-height: 58px;
 
                 &:hover{
-                    background: var(--cc-cookie-category-block-hover-bg);
-                    border-color: var(--cc-cookie-category-block-hover-border);
+                    background: var(--bts-alt-dark-secondary);
+                    border-color: var(--bts-description-text);
                 }
             }
 
             /* Hide description by default */
             .pm__section-desc-wrapper{
                 display: none;
-                border: 1px solid var(--cc-cookie-category-block-border);
+                border: 1px solid var(--bts-description-text);
                 border-top: none;
                 border-radius: var(--cc-btn-border-radius);
                 border-top-left-radius: 0;
@@ -186,6 +186,7 @@ $service-toggle-knob-icon-width: 1.7px;
             .pm__section-desc{
                 padding: 1em;
                 margin-top: 0;
+                color: var(--bts-secondary-text);
             }
 
             &.is-expanded{
@@ -219,14 +220,15 @@ $service-toggle-knob-icon-width: 1.7px;
                 height: 20px;
                 position: absolute;
                 left: 18px;
-                background: var(--cc-toggle-readonly-bg);
+                background: var(--bts-alt-dark-secondary);
                 display: flex;
                 justify-content: center;
                 border-radius: 100%;
                 pointer-events: none;
+                color: var(--bts-secondary-text);
 
                 svg {
-                    stroke: var(--cc-btn-secondary-color);
+                    stroke: var(--bts-secondary-text);
                     transform: scale(.5);
                 }
             }
@@ -353,8 +355,8 @@ $service-toggle-knob-icon-width: 1.7px;
 
     .toggle__icon{
         position: absolute;
-        background: var(--cc-toggle-off-bg);
-        box-shadow: 0 0 0 1px var(--cc-toggle-off-bg);
+        background: var(--bts-disabled-text);
+        box-shadow: 0 0 0 1px var(--bts-description-text);
         transition: all .25s ease;
         pointer-events: none;
         display: flex;
@@ -369,7 +371,7 @@ $service-toggle-knob-icon-width: 1.7px;
         width: $toggle-knob-height;
         height: $toggle-knob-height;
         border: none;
-        background: var(--cc-toggle-off-knob-bg);
+        background: var(--bts-secondary-color);
         box-shadow: 0 1px 2px rgba(24, 32, 3, .36);
         transition: transform .25s ease, background-color .25s ease;
         border-radius: var(--cc-pm-toggle-border-radius);
@@ -388,7 +390,7 @@ $service-toggle-knob-icon-width: 1.7px;
         transform: rotate(45deg);
 
         svg {
-            stroke: var(--cc-toggle-on-bg);
+            stroke: var(--bts-secondary-text);
             transform: scale(.55) rotate(-45deg);
         }
     }
@@ -397,7 +399,7 @@ $service-toggle-knob-icon-width: 1.7px;
         opacity: 1;
 
         svg {
-            stroke: var(--cc-toggle-off-bg);
+            stroke: var(--bts-secondary-text);
             transform: scale(.55)
         }
     }
@@ -405,12 +407,12 @@ $service-toggle-knob-icon-width: 1.7px;
     .section__toggle:checked{
 
         &~.toggle__icon{
-            background: var(--cc-toggle-on-bg);
-            box-shadow: 0 0 0 1px var(--cc-toggle-on-bg);
+            background: var(--bts-secondary-text);
+            box-shadow: 0 0 0 1px var(--bts-secondary-text);
 
             .toggle__icon-circle {
                 transform: translateX(calc($toggle-knob-width - $toggle-knob-height));
-                background-color: var(--cc-toggle-on-knob-bg);
+                background-color: var(--bts-secondary-color);
             }
 
             .toggle__icon-on{
@@ -424,16 +426,16 @@ $service-toggle-knob-icon-width: 1.7px;
 
         &:disabled{
             &~.toggle__icon{
-                background: var(--cc-toggle-readonly-bg);
-                box-shadow: 0 0 0 1px var(--cc-toggle-readonly-bg);
+                background: var(--bts-main-bg);
+                box-shadow: 0 0 0 1px var(--bts-alt-secondary);
 
                 .toggle__icon-circle {
-                    background: var(--cc-toggle-readonly-knob-bg);
+                    background: var(--bts-disabled-text);
                     box-shadow: none;
                 }
 
                 svg {
-                    stroke: var(--cc-toggle-readonly-knob-icon-color);
+                    stroke: var(--bts-secondary-bg);
                 }
             }
         }
@@ -547,7 +549,7 @@ $service-toggle-knob-icon-width: 1.7px;
     .pm__footer{
         display: flex;
         justify-content: space-between;
-        border-top: 1px solid var(--cc-separator-border-color);
+        border-top: 1px solid var(--bts-description-text);
     }
 
     .pm__btn-group{
@@ -568,9 +570,9 @@ $service-toggle-knob-icon-width: 1.7px;
     }
 
     .pm__btn{
-        color: var(--cc-btn-primary-color);
-        background: var(--cc-btn-primary-bg);
-        border: 1px solid var(--cc-btn-primary-border-color);
+        color: var(--bts-main-bg);
+        background: var(--bts-secondary-text);
+        border: 1px solid var(--bts-secondary-text);
         text-align: center;
         flex: auto;
         min-width: 110px;
@@ -584,21 +586,21 @@ $service-toggle-knob-icon-width: 1.7px;
                     color .15s ease;
 
         &:hover{
-            background: var(--cc-btn-primary-hover-bg);
-            border-color: var(--cc-btn-primary-hover-border-color);
-            color: var(--cc-btn-primary-hover-color);
+            background: var(--bts-description-text);
+            border-color: var(--bts-description-text);
+            color: var(--bts-alt-dark-secondary);
         }
 
         /* Secondary btn colors */
         &--secondary{
-            color: var(--cc-btn-secondary-color);
-            background: var(--cc-btn-secondary-bg);
-            border-color: var(--cc-btn-secondary-border-color);
+            color: var(--bts-secondary-text);
+            background: var(--bts-secondary-bg);
+            border-color: var(--bts-secondary-bg);
 
             &:hover{
-                background: var(--cc-btn-secondary-hover-bg);
-                border-color: var(--cc-btn-secondary-hover-border-color);
-                color: var(--cc-btn-secondary-hover-color);
+                background: var(--bts-surface);
+                border-color: var(--bts-surface);
+                color: var(--bts-main-text);
             }
         }
     }
