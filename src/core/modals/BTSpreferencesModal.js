@@ -162,11 +162,9 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         addClass(codeContainer, 'code-contaienr');
         var codeImg = createNode('script');
         setAttribute(codeImg, 'type', 'text/javascript');
-        codeImg.text = 'import QRCode from "qrcodejs";new QRCode(document.getElementById("qrcode"), "http://google.com");';
+        codeImg.text = 'new QRCode(document.getElementById("qrcode"), "http://google.com");';
         appendChild(codeContainer, codeImg);
         appendChild(dom._pmBody, codeContainer);
-        // var qrCode = new QRCode(codeContainer);
-        // qrCode.makeCode('hola kitos');
 
 
         appendChild(dom._pm, dom._pmHeader);
