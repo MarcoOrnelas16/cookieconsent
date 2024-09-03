@@ -30,7 +30,7 @@ import {
     CLICK_EVENT,
     DATA_ROLE
 } from '../../utils/constants';
-import QRCode from 'qrcodejs';
+import QRCode from 'qrcode';
 
 /**
  * @callback CreateMainContainer
@@ -157,18 +157,13 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         appendChild(dom._pm, dom._pmDivTabindex);
 
         // Create qr?
-        var codeContainer = createNode(DIV_TAG);
-        codeContainer.id = 'qrcode';
-        var generator = createNode(BUTTON_TAG);
-        generator.id = 'generateQR';
-        addClassPm(generator, 'btn');
-        generator.addEventListener('click', function() {
-            var qrcode = new QRCode(document.getElementById('qrcode'), {
-                text: 'https://google.com',
-                width: 128,
-                height: 128
-            });
+        var codeContainer = createNode('img');
+        const text = 'test text';
+        QRCode.toFile('qrcode.png', text, function (err) {
+            if (err) throw err;
+            console.log('Código QR generado y guardado en qrcode.png');
         });
+        codeContainer.src = 'qrcode.png';
         appendChild(dom._pmBody, codeContainer);
         appendChild(dom._pmBody, generator);
         
