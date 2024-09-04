@@ -157,13 +157,13 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         appendChild(dom._pm, dom._pmDivTabindex);
 
         // Create qr?
-        var canvasContainer = createNode(DIV_TAG);
+        let canvasContainer = createNode(DIV_TAG);
         addClass(canvasContainer, 'canvas-container');
 
-        var canvas = createNode('canvas');
+        let canvas = createNode('canvas');
         canvas.id = 'canvas';
 
-        var text = 'cookies information: ';
+        let text = 'cookies information: ';
         sectionsData.forEach(section => {
             text += JSON.stringify(section);
         });
