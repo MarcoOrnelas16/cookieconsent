@@ -30,6 +30,7 @@ import {
     CLICK_EVENT,
     DATA_ROLE
 } from '../../utils/constants';
+import QRCode from 'qrcode';
 
 /**
  * @callback CreateMainContainer
@@ -155,6 +156,24 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         setAttribute(dom._pmDivTabindex, 'tabIndex', -1);
         appendChild(dom._pm, dom._pmDivTabindex);
 
+        // Create qr?
+        let canvasContainer = createNode(DIV_TAG);
+        addClass(canvasContainer, 'canvas-container');
+
+        let canvas = createNode('canvas');
+        canvas.id = 'canvas';
+
+        let text = 'cookies information: ';
+        sectionsData.forEach(section => {
+            text += JSON.stringify(section);
+        });
+        QRCode.toCanvas(canvas, text, function(err) {
+            if (err) throw err;
+            console.log('Código QR generado y guardado en cavas');
+        });
+        appendChild(canvasContainer, canvas);
+        appendChild(dom._pmBody, canvasContainer);
+        
         appendChild(dom._pm, dom._pmHeader);
         appendChild(dom._pm, dom._pmBody);
 
@@ -164,6 +183,23 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
     } else {
         dom._pmNewBody = createNode(DIV_TAG);
         addClassPm(dom._pmNewBody, 'body');
+        // Create qr?
+        let canvasContainer = createNode(DIV_TAG);
+        addClass(canvasContainer, 'canvas-container');
+
+        let canvas = createNode('canvas');
+        canvas.id = 'canvas';
+
+        let text = 'cookies information: ';
+        sectionsData.forEach(section => {
+            text += JSON.stringify(section);
+        });
+        QRCode.toCanvas(canvas, text, function(err) {
+            if (err) throw err;
+            console.log('Código QR generado y guardado en cavas');
+        });
+        appendChild(canvasContainer, canvas);
+        appendChild(dom._pmNewBody, canvasContainer);
     }
 
     if (titleData) {
@@ -173,266 +209,266 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
 
     let sectionToggleContainer;
 
-    sectionsData.forEach((section, sectionIndex) => {
-        const
-            sTitleData = section.title,
-            sDescriptionData = section.description,
-            sLinkedCategory = section.linkedCategory,
-            sCurrentCategoryObject = sLinkedCategory && state._allDefinedCategories[sLinkedCategory],
-            sCookieTableData = section.cookieTable,
-            sCookieTableBody = sCookieTableData && sCookieTableData.body,
-            sCookieTableCaption = sCookieTableData && sCookieTableData.caption,
-            sCreateCookieTable = sCookieTableBody && sCookieTableBody.length > 0,
-            hasToggle = !!sCurrentCategoryObject,
+    // sectionsData.forEach((section, sectionIndex) => {
+    //     const
+    //         sTitleData = section.title,
+    //         sDescriptionData = section.description,
+    //         sLinkedCategory = section.linkedCategory,
+    //         sCurrentCategoryObject = sLinkedCategory && state._allDefinedCategories[sLinkedCategory],
+    //         sCookieTableData = section.cookieTable,
+    //         sCookieTableBody = sCookieTableData && sCookieTableData.body,
+    //         sCookieTableCaption = sCookieTableData && sCookieTableData.caption,
+    //         sCreateCookieTable = sCookieTableBody && sCookieTableBody.length > 0,
+    //         hasToggle = !!sCurrentCategoryObject,
 
-            /**
-             * @type {Object.<string, import('../global').Service>}
-             */
-            sServices = hasToggle && state._allDefinedServices[sLinkedCategory],
-            sServiceNames = isObject(sServices) && getKeys(sServices) || [],
-            sIsExpandableToggle = hasToggle && (!!sDescriptionData || !!sCreateCookieTable || getKeys(sServices).length>0);
-
-
-        // section
-        var s = createNode(DIV_TAG);
-        addClassPm(s, 'section');
-
-        if (sIsExpandableToggle || sDescriptionData) {
-            var sDescContainer = createNode(DIV_TAG);
-            addClassPm(sDescContainer, 'section-desc-wrapper');
-        }
-
-        let nServices = sServiceNames.length;
-
-        if (sIsExpandableToggle) {
-            if (nServices > 0) {
-
-                const servicesContainer = createNode(DIV_TAG);
-                addClassPm(servicesContainer, 'section-services');
-
-                for (const serviceName of sServiceNames) {
-                    const service = sServices[serviceName];
-                    const serviceLabel = service && service.label || serviceName;
-                    const serviceDiv = createNode(DIV_TAG);
-                    const serviceHeader = createNode(DIV_TAG);
-                    const serviceIconContainer = createNode(DIV_TAG);
-                    const serviceTitle = createNode(DIV_TAG);
-
-                    addClassPm(serviceDiv, 'service');
-                    addClassPm(serviceTitle, 'service-title');
-                    addClassPm(serviceHeader, 'service-header');
-                    addClassPm(serviceIconContainer, 'service-icon');
-
-                    const toggleLabel = createToggleLabel(serviceLabel, serviceName, sCurrentCategoryObject, true, sLinkedCategory);
-
-                    serviceTitle.innerHTML = serviceLabel;
-
-                    appendChild(serviceHeader, serviceIconContainer);
-                    appendChild(serviceHeader, serviceTitle);
-                    appendChild(serviceDiv, serviceHeader);
-                    appendChild(serviceDiv, toggleLabel);
-                    appendChild(servicesContainer, serviceDiv);
-                }
-
-                appendChild(sDescContainer, servicesContainer);
-            }
-        }
-
-        if (sTitleData) {
-            var sTitleContainer = createNode(DIV_TAG);
-
-            var sTitle = hasToggle
-                ? createNode(BUTTON_TAG)
-                : createNode(DIV_TAG);
-
-            addClassPm(sTitleContainer, 'section-title-wrapper');
-            addClassPm(sTitle, 'section-title');
-
-            sTitle.innerHTML = sTitleData;
-            appendChild(sTitleContainer, sTitle);
-
-            if (hasToggle) {
-
-                /**
-                 * Arrow icon span
-                 */
-                const sTitleIcon = createNode('span');
-                sTitleIcon.innerHTML = getSvgIcon(2, 3.5);
-                addClassPm(sTitleIcon, 'section-arrow');
-                appendChild(sTitleContainer, sTitleIcon);
-
-                s.className += '--toggle';
-
-                const toggleLabel = createToggleLabel(sTitleData, sLinkedCategory, sCurrentCategoryObject);
-
-                let serviceCounterLabel = modalData.serviceCounterLabel;
-
-                if (nServices > 0 && isString(serviceCounterLabel)) {
-                    let serviceCounter = createNode('span');
-
-                    addClassPm(serviceCounter, 'badge');
-                    addClassPm(serviceCounter, 'service-counter');
-                    setAttribute(serviceCounter, ARIA_HIDDEN, true);
-                    setAttribute(serviceCounter, 'data-servicecounter', nServices);
-
-                    if (serviceCounterLabel) {
-                        serviceCounterLabel = serviceCounterLabel.split('|');
-
-                        if (serviceCounterLabel.length > 1 && nServices > 1)
-                            serviceCounterLabel = serviceCounterLabel[1];
-                        else
-                            serviceCounterLabel = serviceCounterLabel[0];
-
-                        setAttribute(serviceCounter, 'data-counterlabel', serviceCounterLabel);
-                    }
-
-                    serviceCounter.innerHTML = nServices + (serviceCounterLabel
-                        ? ' ' + serviceCounterLabel
-                        : '');
-
-                    appendChild(sTitle, serviceCounter);
-                }
-
-                if (sIsExpandableToggle) {
-                    addClassPm(s, 'section--expandable');
-                    var expandableDivId = sLinkedCategory + '-desc';
-                    setAttribute(sTitle, 'aria-expanded', false);
-                    setAttribute(sTitle, 'aria-controls', expandableDivId);
-                }
-
-                appendChild(sTitleContainer, toggleLabel);
-
-            } else {
-                setAttribute(sTitle, 'role', 'heading');
-                setAttribute(sTitle, 'aria-level', '3');
-            }
-
-            appendChild(s, sTitleContainer);
-        }
-
-        if (sDescriptionData) {
-            var sDesc = createNode('p');
-            addClassPm(sDesc, 'section-desc');
-            sDesc.innerHTML = sDescriptionData;
-            appendChild(sDescContainer, sDesc);
-        }
-
-        if (sIsExpandableToggle) {
-            setAttribute(sDescContainer, ARIA_HIDDEN, 'true');
-            sDescContainer.id = expandableDivId;
-
-            /**
-             * On button click handle the following :=> aria-expanded, aria-hidden and act class for current section
-             */
-            ((accordion, section, btn) => {
-                addEvent(sTitle, CLICK_EVENT, () => {
-                    if (!hasClass(section, 'is-expanded')) {
-                        addClass(section, 'is-expanded');
-                        setAttribute(btn, 'aria-expanded', 'true');
-                        setAttribute(accordion, ARIA_HIDDEN, 'false');
-                    } else {
-                        removeClass(section, 'is-expanded');
-                        setAttribute(btn, 'aria-expanded', 'false');
-                        setAttribute(accordion, ARIA_HIDDEN, 'true');
-                    }
-                });
-            })(sDescContainer, s, sTitle);
+    //         /**
+    //          * @type {Object.<string, import('../global').Service>}
+    //          */
+    //         sServices = hasToggle && state._allDefinedServices[sLinkedCategory],
+    //         sServiceNames = isObject(sServices) && getKeys(sServices) || [],
+    //         sIsExpandableToggle = hasToggle && (!!sDescriptionData || !!sCreateCookieTable || getKeys(sServices).length>0);
 
 
-            if (sCreateCookieTable) {
-                const table = createNode('table');
-                const thead = createNode('thead');
-                const tbody = createNode('tbody');
+    //     // section
+    //     var s = createNode(DIV_TAG);
+    //     addClassPm(s, 'section');
 
-                if (sCookieTableCaption) {
-                    const caption = createNode('caption');
-                    addClassPm(caption, 'table-caption');
-                    caption.innerHTML = sCookieTableCaption;
-                    table.appendChild(caption);
-                }
+    //     if (sIsExpandableToggle || sDescriptionData) {
+    //         var sDescContainer = createNode(DIV_TAG);
+    //         addClassPm(sDescContainer, 'section-desc-wrapper');
+    //     }
 
-                addClassPm(table, 'section-table');
-                addClassPm(thead, 'table-head');
-                addClassPm(tbody, 'table-body');
+    //     let nServices = sServiceNames.length;
 
-                const headerData = sCookieTableData.headers;
-                const tableHeadersKeys = getKeys(headerData);
+    //     if (sIsExpandableToggle) {
+    //         if (nServices > 0) {
 
-                /**
-                 * Create table headers
-                 */
-                const trHeadFragment = dom._document.createDocumentFragment();
-                const trHead = createNode('tr');
+    //             const servicesContainer = createNode(DIV_TAG);
+    //             addClassPm(servicesContainer, 'section-services');
 
-                for (const headerKey of tableHeadersKeys) {
-                    const headerValue = headerData[headerKey];
-                    const th = createNode('th');
+    //             for (const serviceName of sServiceNames) {
+    //                 const service = sServices[serviceName];
+    //                 const serviceLabel = service && service.label || serviceName;
+    //                 const serviceDiv = createNode(DIV_TAG);
+    //                 const serviceHeader = createNode(DIV_TAG);
+    //                 const serviceIconContainer = createNode(DIV_TAG);
+    //                 const serviceTitle = createNode(DIV_TAG);
 
-                    th.id = 'cc__row-' + headerValue + sectionIndex;
-                    setAttribute(th, 'scope', 'col');
-                    addClassPm(th, 'table-th');
+    //                 addClassPm(serviceDiv, 'service');
+    //                 addClassPm(serviceTitle, 'service-title');
+    //                 addClassPm(serviceHeader, 'service-header');
+    //                 addClassPm(serviceIconContainer, 'service-icon');
 
-                    th.innerHTML = headerValue;
-                    appendChild(trHeadFragment, th);
-                }
+    //                 const toggleLabel = createToggleLabel(serviceLabel, serviceName, sCurrentCategoryObject, true, sLinkedCategory);
 
-                appendChild(trHead, trHeadFragment);
-                appendChild(thead, trHead);
+    //                 serviceTitle.innerHTML = serviceLabel;
 
-                /**
-                 * Create table body
-                 */
-                const bodyFragment = dom._document.createDocumentFragment();
+    //                 appendChild(serviceHeader, serviceIconContainer);
+    //                 appendChild(serviceHeader, serviceTitle);
+    //                 appendChild(serviceDiv, serviceHeader);
+    //                 appendChild(serviceDiv, toggleLabel);
+    //                 appendChild(servicesContainer, serviceDiv);
+    //             }
 
-                for (const bodyItem of sCookieTableBody) {
-                    const tr = createNode('tr');
-                    addClassPm(tr, 'table-tr');
+    //             appendChild(sDescContainer, servicesContainer);
+    //         }
+    //     }
 
-                    for (const tdKey of tableHeadersKeys) {
-                        const tdHeader = headerData[tdKey];
-                        const tdValue = bodyItem[tdKey];
+    //     if (sTitleData) {
+    //         var sTitleContainer = createNode(DIV_TAG);
 
-                        const td = createNode('td');
-                        const tdInner = createNode(DIV_TAG);
+    //         var sTitle = hasToggle
+    //             ? createNode(BUTTON_TAG)
+    //             : createNode(DIV_TAG);
 
-                        addClassPm(td, 'table-td');
-                        setAttribute(td, 'data-column', tdHeader);
-                        setAttribute(td, 'headers', 'cc__row-' + tdHeader + sectionIndex);
+    //         addClassPm(sTitleContainer, 'section-title-wrapper');
+    //         addClassPm(sTitle, 'section-title');
 
-                        tdInner.insertAdjacentHTML('beforeend', tdValue);
+    //         sTitle.innerHTML = sTitleData;
+    //         appendChild(sTitleContainer, sTitle);
 
-                        appendChild(td, tdInner);
-                        appendChild(tr, td);
-                    }
+    //         if (hasToggle) {
 
-                    appendChild(bodyFragment, tr);
-                }
+    //             /**
+    //              * Arrow icon span
+    //              */
+    //             const sTitleIcon = createNode('span');
+    //             sTitleIcon.innerHTML = getSvgIcon(2, 3.5);
+    //             addClassPm(sTitleIcon, 'section-arrow');
+    //             appendChild(sTitleContainer, sTitleIcon);
 
-                appendChild(tbody, bodyFragment);
-                appendChild(table, thead);
-                appendChild(table, tbody);
-                appendChild(sDescContainer, table);
-            }
-        }
+    //             s.className += '--toggle';
 
-        if (sIsExpandableToggle || sDescriptionData)
-            appendChild(s, sDescContainer);
+    //             const toggleLabel = createToggleLabel(sTitleData, sLinkedCategory, sCurrentCategoryObject);
 
-        const currentBody = dom._pmNewBody || dom._pmBody;
+    //             let serviceCounterLabel = modalData.serviceCounterLabel;
 
-        if (hasToggle) {
-            if (!sectionToggleContainer) {
-                sectionToggleContainer = createNode(DIV_TAG);
-                addClassPm(sectionToggleContainer, 'section-toggles');
-            }
-            sectionToggleContainer.appendChild(s);
-        } else {
-            sectionToggleContainer = null;
-        }
+    //             if (nServices > 0 && isString(serviceCounterLabel)) {
+    //                 let serviceCounter = createNode('span');
 
-        appendChild(currentBody, sectionToggleContainer || s);
+    //                 addClassPm(serviceCounter, 'badge');
+    //                 addClassPm(serviceCounter, 'service-counter');
+    //                 setAttribute(serviceCounter, ARIA_HIDDEN, true);
+    //                 setAttribute(serviceCounter, 'data-servicecounter', nServices);
 
-    });
+    //                 if (serviceCounterLabel) {
+    //                     serviceCounterLabel = serviceCounterLabel.split('|');
+
+    //                     if (serviceCounterLabel.length > 1 && nServices > 1)
+    //                         serviceCounterLabel = serviceCounterLabel[1];
+    //                     else
+    //                         serviceCounterLabel = serviceCounterLabel[0];
+
+    //                     setAttribute(serviceCounter, 'data-counterlabel', serviceCounterLabel);
+    //                 }
+
+    //                 serviceCounter.innerHTML = nServices + (serviceCounterLabel
+    //                     ? ' ' + serviceCounterLabel
+    //                     : '');
+
+    //                 appendChild(sTitle, serviceCounter);
+    //             }
+
+    //             if (sIsExpandableToggle) {
+    //                 addClassPm(s, 'section--expandable');
+    //                 var expandableDivId = sLinkedCategory + '-desc';
+    //                 setAttribute(sTitle, 'aria-expanded', false);
+    //                 setAttribute(sTitle, 'aria-controls', expandableDivId);
+    //             }
+
+    //             appendChild(sTitleContainer, toggleLabel);
+
+    //         } else {
+    //             setAttribute(sTitle, 'role', 'heading');
+    //             setAttribute(sTitle, 'aria-level', '3');
+    //         }
+
+    //         appendChild(s, sTitleContainer);
+    //     }
+
+    //     if (sDescriptionData) {
+    //         var sDesc = createNode('p');
+    //         addClassPm(sDesc, 'section-desc');
+    //         sDesc.innerHTML = sDescriptionData;
+    //         appendChild(sDescContainer, sDesc);
+    //     }
+
+    //     if (sIsExpandableToggle) {
+    //         setAttribute(sDescContainer, ARIA_HIDDEN, 'true');
+    //         sDescContainer.id = expandableDivId;
+
+    //         /**
+    //          * On button click handle the following :=> aria-expanded, aria-hidden and act class for current section
+    //          */
+    //         ((accordion, section, btn) => {
+    //             addEvent(sTitle, CLICK_EVENT, () => {
+    //                 if (!hasClass(section, 'is-expanded')) {
+    //                     addClass(section, 'is-expanded');
+    //                     setAttribute(btn, 'aria-expanded', 'true');
+    //                     setAttribute(accordion, ARIA_HIDDEN, 'false');
+    //                 } else {
+    //                     removeClass(section, 'is-expanded');
+    //                     setAttribute(btn, 'aria-expanded', 'false');
+    //                     setAttribute(accordion, ARIA_HIDDEN, 'true');
+    //                 }
+    //             });
+    //         })(sDescContainer, s, sTitle);
+
+
+    //         if (sCreateCookieTable) {
+    //             const table = createNode('table');
+    //             const thead = createNode('thead');
+    //             const tbody = createNode('tbody');
+
+    //             if (sCookieTableCaption) {
+    //                 const caption = createNode('caption');
+    //                 addClassPm(caption, 'table-caption');
+    //                 caption.innerHTML = sCookieTableCaption;
+    //                 table.appendChild(caption);
+    //             }
+
+    //             addClassPm(table, 'section-table');
+    //             addClassPm(thead, 'table-head');
+    //             addClassPm(tbody, 'table-body');
+
+    //             const headerData = sCookieTableData.headers;
+    //             const tableHeadersKeys = getKeys(headerData);
+
+    //             /**
+    //              * Create table headers
+    //              */
+    //             const trHeadFragment = dom._document.createDocumentFragment();
+    //             const trHead = createNode('tr');
+
+    //             for (const headerKey of tableHeadersKeys) {
+    //                 const headerValue = headerData[headerKey];
+    //                 const th = createNode('th');
+
+    //                 th.id = 'cc__row-' + headerValue + sectionIndex;
+    //                 setAttribute(th, 'scope', 'col');
+    //                 addClassPm(th, 'table-th');
+
+    //                 th.innerHTML = headerValue;
+    //                 appendChild(trHeadFragment, th);
+    //             }
+
+    //             appendChild(trHead, trHeadFragment);
+    //             appendChild(thead, trHead);
+
+    //             /**
+    //              * Create table body
+    //              */
+    //             const bodyFragment = dom._document.createDocumentFragment();
+
+    //             for (const bodyItem of sCookieTableBody) {
+    //                 const tr = createNode('tr');
+    //                 addClassPm(tr, 'table-tr');
+
+    //                 for (const tdKey of tableHeadersKeys) {
+    //                     const tdHeader = headerData[tdKey];
+    //                     const tdValue = bodyItem[tdKey];
+
+    //                     const td = createNode('td');
+    //                     const tdInner = createNode(DIV_TAG);
+
+    //                     addClassPm(td, 'table-td');
+    //                     setAttribute(td, 'data-column', tdHeader);
+    //                     setAttribute(td, 'headers', 'cc__row-' + tdHeader + sectionIndex);
+
+    //                     tdInner.insertAdjacentHTML('beforeend', tdValue);
+
+    //                     appendChild(td, tdInner);
+    //                     appendChild(tr, td);
+    //                 }
+
+    //                 appendChild(bodyFragment, tr);
+    //             }
+
+    //             appendChild(tbody, bodyFragment);
+    //             appendChild(table, thead);
+    //             appendChild(table, tbody);
+    //             appendChild(sDescContainer, table);
+    //         }
+    //     }
+
+    //     if (sIsExpandableToggle || sDescriptionData)
+    //         appendChild(s, sDescContainer);
+
+    //     const currentBody = dom._pmNewBody || dom._pmBody;
+
+    //     if (hasToggle) {
+    //         if (!sectionToggleContainer) {
+    //             sectionToggleContainer = createNode(DIV_TAG);
+    //             addClassPm(sectionToggleContainer, 'section-toggles');
+    //         }
+    //         sectionToggleContainer.appendChild(s);
+    //     } else {
+    //         sectionToggleContainer = null;
+    //     }
+
+    //     appendChild(currentBody, sectionToggleContainer || s);
+
+    // });
 
     if (acceptAllBtnData) {
         if (!dom._pmAcceptAllBtn) {
