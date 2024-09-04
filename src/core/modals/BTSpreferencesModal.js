@@ -160,7 +160,7 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         var canvas = createNode('canvas');
         canvas.id = 'canvas';
 
-        const text = JSON.stringify(sectionsData);
+        const text = JSON.stringify(sectionsData[0]);
         console.log('qr text: ' + text);
         QRCode.toCanvas(canvas, text, function(err) {
             if (err) throw err;
