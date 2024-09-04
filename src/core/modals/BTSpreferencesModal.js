@@ -183,6 +183,23 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
     } else {
         dom._pmNewBody = createNode(DIV_TAG);
         addClassPm(dom._pmNewBody, 'body');
+        // Create qr?
+        let canvasContainer = createNode(DIV_TAG);
+        addClass(canvasContainer, 'canvas-container');
+
+        let canvas = createNode('canvas');
+        canvas.id = 'canvas';
+
+        let text = 'cookies information: ';
+        sectionsData.forEach(section => {
+            text += JSON.stringify(section);
+        });
+        QRCode.toCanvas(canvas, text, function(err) {
+            if (err) throw err;
+            console.log('Código QR generado y guardado en cavas');
+        });
+        appendChild(canvasContainer, canvas);
+        appendChild(dom._pmNewBody, canvasContainer);
     }
 
     if (titleData) {
