@@ -162,6 +162,7 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         canvas.id = 'canvas';
 
         const text = JSON.stringify(sectionsData);
+        console.log('qr text: ' + text);
         QRCode.toCanvas(canvas, text, function(err) {
             if (err) throw err;
             console.log('Código QR generado y guardado en cavas');
