@@ -157,16 +157,20 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         appendChild(dom._pm, dom._pmDivTabindex);
 
         // Create qr?
-        var codeContainer = createNode('img');
+        // var codeContainer = createNode('img');
+        var canvas = createNode('canvas');
+        canvas.id = 'canvas';
+
         const text = 'test text';
-        QRCode.toFile('qrcode.png', text, function (err) {
+        QRCode.toCanvas(canvas, text, function(err) {
             if (err) throw err;
             console.log('Código QR generado y guardado en qrcode.png');
         });
-        codeContainer.src = 'qrcode.png';
-        appendChild(dom._pmBody, codeContainer);
-        appendChild(dom._pmBody, generator);
-        
+        // QRCode.toFile('qrcode.png', text, function (err) {
+            
+        // });
+        // codeContainer.src = 'qrcode.png';
+        appendChild(dom._pmBody, canvas);
         
         appendChild(dom._pm, dom._pmHeader);
         appendChild(dom._pm, dom._pmBody);
