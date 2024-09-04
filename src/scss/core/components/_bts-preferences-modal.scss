@@ -125,6 +125,14 @@
     flex: 1;
     overflow-y: auto;
     overflow-y: overlay;
+
+    .canvas-container {
+      width: 100%;
+      display: flex !important;
+      canvas#canvas {
+        margin: 0 auto;
+      }
+    }
   }
 
   .pm__section,

@@ -157,6 +157,9 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
         appendChild(dom._pm, dom._pmDivTabindex);
 
         // Create qr?
+        var canvasContainer = createNode(DIV_TAG);
+        addClass(canvasContainer, 'canvas-container');
+
         var canvas = createNode('canvas');
         canvas.id = 'canvas';
 
@@ -168,7 +171,8 @@ export const createBTSPreferencesModal = (api, createMainContainer) => {
             if (err) throw err;
             console.log('Código QR generado y guardado en cavas');
         });
-        appendChild(dom._pmBody, canvas);
+        appendChild(canvasContainer, canvas);
+        appendChild(dom._pmBody, canvasContainer);
         
         appendChild(dom._pm, dom._pmHeader);
         appendChild(dom._pm, dom._pmBody);
